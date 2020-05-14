@@ -2,23 +2,25 @@
   <kinesis-container>
     <main class="main">
       <div class="slider">
-        <swiper class="slider__swiper swiper" :options="swiperOption">
+        <swiper class="slider__swiper swiper" :options="swiperOption" @slideChange="onSwipe">
           <swiper-slide class="slider__slide">
-            <p class="slider__slide_item">InkLingerie</p>
+            <p
+              @mousemove="showMessage"
+              @mouseleave="mouseLeave"
+              class="slider__slide_item"
+            >InkLingerie</p>
           </swiper-slide>
           <swiper-slide class="slider__slide">
-            <p class="slider__slide_item">InkLingerie</p>
-          </swiper-slide>
-          <swiper-slide class="slider__slide">
-            <p class="slider__slide_item">InkLingerie</p>
-          </swiper-slide>
-          <swiper-slide class="slider__slide">
-            <p class="slider__slide_item">InkLingerie</p>
+            <p
+              @mousemove="showMessage"
+              @mouseleave="mouseLeave"
+              class="slider__slide_item"
+            >InkLingerie</p>
           </swiper-slide>
           <div class="swiper-button-prev" slot="button-prev"></div>
           <div class="swiper-button-next" slot="button-next"></div>
         </swiper>
-        <!-- <div class="slider__text">Drag Me</div> -->
+        <div class="slider__text">Drag Me</div>
       </div>
       <div class="image-container">
         <div class="vector-container">
@@ -62,6 +64,7 @@ export default {
   },
   name: "swiper-example-navigation",
   title: "Navigation",
+
   data() {
     return {
       swiperOption: {
@@ -71,11 +74,57 @@ export default {
         }
       }
     };
+  },
+
+  methods: {
+    onSwipe() {
+      let element = document.querySelector(".image-container");
+      let main = document.querySelector("main");
+      element.remove();
+      main.append(element);
+    },
+
+    showMessage(e) {
+      let left = e.clientX + 25;
+      let top = e.clientY + 10;
+      let element = document.querySelector(".slider__text");
+      element.setAttribute(
+        "style",
+        `left: ${left}px; top: ${top}px; display: block; opacity: 1;`
+      );
+    },
+
+    mouseLeave() {
+      document
+        .querySelector(".slider__text")
+        .setAttribute("style", "display: none; opacity: 1");
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.cursor {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@keyframes setOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .slider {
   width: 100%;
   height: 100%;
@@ -84,6 +133,18 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  &__text {
+    transition: opacity 3s;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    padding: 15px;
+    background: #000;
+    border-radius: 4px;
+    color: #fff;
+    animation: setOpacity 2s linear;
+  }
 
   &__swiper {
     height: 20%;
@@ -144,6 +205,7 @@ main {
 }
 
 .image-container {
+  animation: setOpacity 3s linear;
   display: flex;
   justify-content: center;
   align-items: center;
