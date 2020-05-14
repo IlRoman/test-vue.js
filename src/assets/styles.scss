@@ -1,0 +1,17 @@
+@import "./breakpoints.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    font-size: 2vw;
+    // cursor: none;
+    // cursor: url(../img/cursor.png), auto;
+}
+
+@font-face {
+    font-family: Schnyder Cond XL Demi;
+    src: url(../fonts/Schnyder-X-Cond-L-Bold.otf);
+}
