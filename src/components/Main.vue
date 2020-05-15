@@ -24,22 +24,22 @@
       </div>
       <div class="image-container">
         <div class="vector-container">
-          <img src="../img/vector.svg" class="vector-container__image" />
+          <img src="../img/Vector.svg" class="vector-container__image" />
         </div>
         <div class="image-container__central-image_box">
           <kinesis-element :strength="80" class="image-container__img2-elem">
-            <img src="../img/image2.png" class="image-container__img2" />
+            <img src="../img/Image2.png" class="image-container__img2" />
           </kinesis-element>
         </div>
         <div class="image-container__secondary-images">
           <div class="image-container__secondary-images_box-first">
             <kinesis-element :strength="60" class="image-container__img1-elem">
-              <img src="../img/image1.png" class="image-container__img1" />
+              <img src="../img/Image1.png" class="image-container__img1" />
             </kinesis-element>
           </div>
           <div class="image-container__secondary-images_box-second">
             <kinesis-element :strength="60" class="image-container__img3-elem">
-              <img src="../img/image3.png" class="image-container__img3" />
+              <img src="../img/Image3.png" class="image-container__img3" />
             </kinesis-element>
           </div>
         </div>
